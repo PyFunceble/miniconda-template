@@ -21,21 +21,30 @@ _pyv="3.8.2"
 # IMPORTANT: the -f argument is preset as last argument
 _string="-m -p $(nproc --ignore=2) -ex -h --plain --idna"
 
-# 1. First Update Conda
+# 1. Add Conda Path to .bashrc (add line below to bottom of bashrc)
+export PATH="${HOME}/miniconda/bin:${PATH}"
+
+# 2. Reload your bashrc
+source "$HOME/.bashrc"
+
+# 3. First Update Conda
 conda update -q conda
 
-# 2. Activate your environment
+# 4. Activate your environment
 source activate pyfuncebletesting
 
-# 3. Upgrade your environment
+# 5. Make sure output dir is there
+mkdir -p "${_outdir}"
+
+# 6. Upgrade your environment
 pip install --upgrade pip
 pip install "${_pyfv}" --upgrade
 
-# 4. Export the Path to PyFunceble before running PyFunceble
+# 7. Export the Path to PyFunceble before running PyFunceble
 export PYFUNCEBLE_CONFIG_DIR="${_outdir}/"
 
-# 5. Run PyFunceble
-PyFunceble "${_string=}" -f "${1}"
+# 8. Run PyFunceble
+PyFunceble ${_string} -f "${1}"
 
-# 6. When finished - Deactivate the environment
-source deactivate pyfuncebletesting
+# 9. When finished - Deactivate the environment
+conda deactivate pyfuncebletesting
