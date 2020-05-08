@@ -5,6 +5,9 @@
 # Setup Conda Python Environments
 # -------------------------------
 
+# Set @pyfunceble version to be used
+_pyfv="pyfunceble-dev"
+
 # Set python version
 _pyv="3.8.2"
 
@@ -43,6 +46,6 @@ pip --version
 pip install "${_pyfv}"
 
 # 14. When finished - Deactivate the environment
-source deactivate pyfuncebletesting
+conda deactivate pyfuncebletesting
 
 # Now we should be ready to run the miniconda_pyfunceble.sh
