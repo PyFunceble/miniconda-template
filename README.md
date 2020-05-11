@@ -9,7 +9,7 @@ I f you by any means needs to rerun this script, please first to ensure the dest
 folder are deleted, this script do not check this.
 
 ## Running pyfunceble
-Simple, feat the scripts with answers or it staves and die... :dead:
+Simple, feat the scripts with answers or it staves and die... :skull: 
 
 For testing purpose you can use the default @pyfnceble test file from
 https://raw.githubusercontent.com/PyFunceble/ci_test/master/test.list
