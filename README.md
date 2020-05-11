@@ -26,7 +26,7 @@ The command would then be
 
 ## Read more
 You can read more about environment variables at
-<https://pyfunceble.readthedocs.io/en/dev/components/environment-variables.html?highlight=PYFUNCEBLE_AUTO_CONFIGURATION#what-do-we-use-and-why>
+<https://pyfunceble.readthedocs.io/en/dev/components/environment-variables.html#what-do-we-use-and-why>
 
 ## Test string
 To alter the test options you should be reading more about this at
