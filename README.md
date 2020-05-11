@@ -10,3 +10,6 @@ folder are deleted, this script do not check this.
 
 ## Running pyfunceble
 Simple, feat the scripts with answers or it staves and die... :dead:
+
+For testing purpose you can use the default @pyfnceble test file from
+https://raw.githubusercontent.com/PyFunceble/ci_test/master/test.list
