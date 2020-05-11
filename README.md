@@ -17,7 +17,7 @@ For testing purpose you can use the default @PyFunceble test file from
 <https://raw.githubusercontent.com/PyFunceble/ci_test/master/test.list>
 
 The command would then be
-```
+```bash
 ./miniconda_pyfunceble.sh "https://raw.githubusercontent.com/PyFunceble/ci_test/master/test.list"
 ```
 
@@ -35,4 +35,4 @@ and @funilrys and since I'm running un a Ubuntu whch curses some troubles
 as @mitchellkrogza descripes it:
 
 > Distributions like Ubuntu are especially troublesome with Python issues
-which are easily solved by just running Python in Conda environments.
+> which are easily solved by just running Python in Conda environments.
