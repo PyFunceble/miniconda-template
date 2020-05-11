@@ -29,9 +29,6 @@ fi
 # Set your desired pyfunceble verion
 read -e -p "Which version of PyFunceble would you like to use?: pyfunceble or pyfunceble-dev: " -i "pyfunceble-dev" _pyfv
 
-# Set python version
-_pyv="3.8.2"
-
 # set your test string.
 # IMPORTANT: the -f argument is preset as last argument
 read -e -p "Enter any custom test string: " -i "--dns 1.1.1.3 -m -p $(nproc --ignore=2) -h --plain -a --dots -vsc" _string

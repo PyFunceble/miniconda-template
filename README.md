@@ -4,8 +4,10 @@ This script consist of two parts.
 1. miniconda_pyfunceble.sh
 
 ## Setup
-If everything works as expected you should never run setup_miniconda more than once.
-I f you by any means needs to rerun this script, please first to ensure the destination
+If everything works as expected you should never run setup_miniconda
+more than once.
+I f you by any means needs to rerun this script, please first to ensure
+the destination
 folder are deleted, this script do not check this.
 
 ## Running pyfunceble
@@ -20,12 +22,17 @@ The command would then be
 ```
 
 ## Read more
-You can read more about environment variables at <https://pyfunceble.readthedocs.io/en/dev/components/environment-variables.html?highlight=PYFUNCEBLE_AUTO_CONFIGURATION#what-do-we-use-and-why>
+You can read more about environment variables at
+<https://pyfunceble.readthedocs.io/en/dev/components/environment-variables.html?highlight=PYFUNCEBLE_AUTO_CONFIGURATION#what-do-we-use-and-why>
 
 ## Test string
-To alter the test options you should be reading more about this at <https://pyfunceble.readthedocs.io/en/dev/usage/index.html>
+To alter the test options you should be reading more about this at
+<https://pyfunceble.readthedocs.io/en/dev/usage/index.html>
 
 ## Why this script
-See <https://github.com/funilrys/PyFunceble/issues/39> by @mitchellkrogza and @funilrys and since I'm running un a Ubuntu whch curses some troubles as @mitchellkrogza descripes it:
+See <https://github.com/funilrys/PyFunceble/issues/39> by @mitchellkrogza
+and @funilrys and since I'm running un a Ubuntu whch curses some troubles
+as @mitchellkrogza descripes it:
 
-> Distributions like Ubuntu are especially troublesome with Python issues which are easily solved by just running Python in Conda environments.
+> Distributions like Ubuntu are especially troublesome with Python issues
+which are easily solved by just running Python in Conda environments.
