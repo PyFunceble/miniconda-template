@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# ignore typical pyfunceble garbage
+output/
+miniconda.sh
+test.list
+dir_structure.json

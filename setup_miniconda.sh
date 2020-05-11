@@ -5,6 +5,9 @@
 # Setup Conda Python Environments
 # -------------------------------
 
+# Stop on any error
+set -e
+
 # Set @pyfunceble version to be used
 _pyfv="pyfunceble-dev"
 
@@ -15,14 +18,14 @@ _pyv="3.8.2"
 export PATH="${HOME}/miniconda/bin:${PATH}"
 
 # 2. Reload your bashrc
-source .bashrc
+source "$HOME/.bashrc"
 
 # 3. Download Conda
-wget -O miniconda.sh \
-  https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+#wget -O miniconda.sh \
+#  https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 
 # 4. Install Conda
-bash miniconda.sh -b -p ${HOME}/miniconda
+bash miniconda.sh -b -p "${HOME}/miniconda"
 
 # 5. Setup Conda
 hash -r
@@ -47,5 +50,7 @@ pip install "${_pyfv}"
 
 # 14. When finished - Deactivate the environment
 conda deactivate pyfuncebletesting
+
+echo ${?}
 
 # Now we should be ready to run the miniconda_pyfunceble.sh
