@@ -8,7 +8,7 @@
 # Stop on any error
 set -e
 
-# Set @pyfunceble version tPo be used
+# Set @pyfunceble version to be used
 pyfunceblePackageName="pyfunceble-dev"
 
 # Set python version
