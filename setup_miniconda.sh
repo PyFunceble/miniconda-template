@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 # All initial credits to @mitchellkrogza and @funilrys
 # Modified by @spirillen
+# License: https://www.mypdns.org/w/license/
+# Issues: https://www.mypdns.org/maniphest/
+# Project: https://www.mypdns.org/project/profile/5/
 # -------------------------------
 # Setup Conda Python Environments
 # -------------------------------
