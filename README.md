@@ -8,7 +8,7 @@ This script consist of two parts.
 
 ## Setup
 
-If everything works as expected you should never run `setup_miniconda.sh`
+If everything works as expected, you should never run `setup_miniconda.sh`
 more than once.
 
 ## Running PyFunceble
@@ -36,8 +36,10 @@ To alter the test options you should be reading more about this at
 
 ## Why this script
 
-See <https://github.com/funilrys/PyFunceble/issues/39> by [@mitchellkrogza](https://github.com/mitchellkrogza)
-and [@funilrys](https://github.com/funilrys) and since I'm running un a Ubuntu whch curses some troubles
+See <https://github.com/funilrys/PyFunceble/issues/39> by
+[@mitchellkrogza](https://github.com/mitchellkrogza)
+and [@funilrys](https://github.com/funilrys) and since I'm running on a Ubuntu
+which curses some troubles
 as [@mitchellkrogza](https://github.com/mitchellkrogza) descripes it:
 
 > Distributions like Ubuntu are especially troublesome with Python issues
