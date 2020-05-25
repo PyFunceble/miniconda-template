@@ -16,7 +16,7 @@ condaInstallDir="${HOME}/miniconda"
 
 if [[ -z "${1}" ]]
 then
-	printf "You forgot to tell me what to test...\nPlease use ${0} /full/path/to/file\n\n"
+	printf "You forgot to tell me what to test...\nPlease use %s /full/path/to/file\n\n" "${0}"
 	exit 1
 fi
 
