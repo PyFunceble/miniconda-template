@@ -55,6 +55,8 @@ read -erp "Enter any custom test string: " -i "--dns 127.0.0.1:5302 -m -p $(npro
 #read -erp "Enter any custom test string: " -i "--syntax" pyfuncebleArgs
 
 # Should we use the default .pyfunceble-env file from users @HOME/.config/
+# shellcheck disable=SC2034  # Unused variables left for readability
+
 while true
 do
 read -erp "Would you like to use your default .pyfunceble-env file? [y/N] " -i "No" input
