@@ -4,7 +4,7 @@
 
 This script consist of two parts.
  1. `setup_miniconda.sh`
- 1. `miniconda_pyfunceble.sh`
+ 2. `miniconda_pyfunceble.sh`
 
 ## Setup
 
