@@ -25,7 +25,7 @@ if [[ ! -d ${condaInstallDir} ]]
 then
   # Download Conda
   wget -O miniconda.sh \
-    https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+    'https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh'
 
   # Install Conda
   bash miniconda.sh -b -p "${condaInstallDir}"
@@ -60,4 +60,4 @@ fi
 
 echo ${?}
 
-# Now we should be ready to run the miniconda_pyfunceble.sh
+# Now you should be ready to run the miniconda_pyfunceble.sh
