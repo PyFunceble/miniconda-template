@@ -116,9 +116,9 @@ then
 fi
 
 # Run PyFunceble
-# Do not quote the following args, as it will brake PyFunceble
+# Switched to use array to keep quotes for SC2086
 
-PyFunceble ${pyfuncebleArgs} -f "${1}"
+PyFunceble "${pyfuncebleArgs[@]}" -f "${1}"
 
 # When finished - Deactivate the environment
 conda deactivate
