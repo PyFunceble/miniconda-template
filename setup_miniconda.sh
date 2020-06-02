@@ -31,7 +31,7 @@ then
   bash miniconda.sh -b -p "${condaInstallDir}"
 
   # Get the conda CLI.
-  source ${condaInstallDir}/etc/profile.d/conda.sh
+  source "${condaInstallDir}/etc/profile.d/conda.sh"
 
   hash conda
 
