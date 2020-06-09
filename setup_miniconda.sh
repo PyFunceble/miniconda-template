@@ -43,14 +43,16 @@ then
   conda create -q -n pyfuncebletesting python="${pythonVersion}"
 
   # Activate this environment you just created
-  source activate pyfuncebletesting
+  # According to the https://docs.conda.io/projects/conda/en/latest/_downloads/843d9e0198f2a193a3484886fa28163c/conda-cheatsheet.pdf
+  # We shall replace source with conda activate vs source
+  conda activate pyfuncebletesting
 
   # Query Python and Pip versions inside this environment
   python -VVV
   pip --version
 
   # Install PyFunceble in this environment (pyfuncebletesting)
-  pip install "${pyfunceblePackageName}"
+  pip -q install -U "${pyfunceblePackageName}"
 
   # When finished - Deactivate the environment
   conda deactivate
