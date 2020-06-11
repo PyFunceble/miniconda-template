@@ -11,11 +11,11 @@
 # Stop on any error
 set -e
 
-# Set @pyfunceble version to be used
+# Setup pyfunceble@ version to be used
 pyfunceblePackageName="pyfunceble-dev"
 
 # Set python version
-pythonVersion="3.8.2"
+pythonVersion="3.8.3"
 
 # Set conda install dir
 condaInstallDir="${HOME}/miniconda"

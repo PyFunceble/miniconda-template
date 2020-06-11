@@ -42,7 +42,8 @@ read -erp "Which version of PyFunceble would you like to use?: pyfunceble or pyf
 # Bug #3 test string
 #read -erp "Enter any custom test string: " -i "--dns 95.216.209.53:53 116.203.32.67:53 -m -p $(nproc --ignore=2) -h --http --plain --dots -vsc --hierarchical -db --database-type mariadb" -a pyfuncebleArgs
 #read -erp "Enter any custom test string: " -i "--dns 127.0.0.1 -m -p $(nproc --ignore=2) -h --http --plain --dots -vsc --hierarchical -dbr 0 -ex -db --database-type mariadb" -a pyfuncebleArgs
-read -erp "Enter any custom test string: " -i "--dns 192.168.1.105 -m -p $(nproc --ignore=2) -h --http --plain --dots -vsc --hierarchical -dbr 0 -ex " -a pyfuncebleArgs
+#read -erp "Enter any custom test string: " -i "--dns 192.168.1.105 -m -p $(nproc --ignore=2) -h --http --plain --dots -vsc --hierarchical -dbr 0 -ex " -a pyfuncebleArgs
+read -erp "Enter any custom test string: " -i "--dns 192.168.1.105:5306 -m -p 6 -h --http --plain -vsc --hierarchical -db --database-type mariadb" -a pyfuncebleArgs
 
 # Should we use the default .pyfunceble-env file from users @HOME/.config/
 # shellcheck disable=SC2034  # Unused variables left for readability
@@ -73,7 +74,8 @@ source "${condaInstallDir}/etc/profile.d/conda.sh"
 hash conda
 
 # First Update Conda
-conda update conda -q
+conda update -q conda
+conda update -q "${pyfunceblePackageName}"
 
 # Activate your environment
 # According to the https://docs.conda.io/projects/conda/en/latest/_downloads/843d9e0198f2a193a3484886fa28163c/conda-cheatsheet.pdf
@@ -87,7 +89,7 @@ mkdir -p "${outputDir}"
 pip install --upgrade pip -q
 pip uninstall -yq pyfunceble
 pip uninstall -yq pyfunceble-dev
-pip install "${pyfunceblePackageName}" --upgrade -q
+pip install --no-cache-dir --upgrade -q "${pyfunceblePackageName}"
 
 # Tell the script to install/update the configuration file automatically.
 export PYFUNCEBLE_AUTO_CONFIGURATION=yes
