@@ -40,8 +40,6 @@ read -erp "Which version of PyFunceble would you like to use?: pyfunceble or pyf
 #read -erp "Enter any custom test string: " -i "--dns 127.0.0.1:5302 -m -p $(nproc --ignore=2) -h --plain -a --dots -vsc" pyfuncebleArgs
 
 # Bug #3 test string
-#read -erp "Enter any custom test string: " -i "--dns 95.216.209.53:53 116.203.32.67:53 -m -p $(nproc --ignore=2) -h --http --plain --dots -vsc --hierarchical -db --database-type mariadb" -a pyfuncebleArgs
-#read -erp "Enter any custom test string: " -i "--dns 127.0.0.1 -m -p $(nproc --ignore=2) -h --http --plain --dots -vsc --hierarchical -dbr 0 -ex -db --database-type mariadb" -a pyfuncebleArgs
 #read -erp "Enter any custom test string: " -i "--dns 192.168.1.105 -m -p $(nproc --ignore=2) -h --http --plain --dots -vsc --hierarchical -dbr 0 -ex " -a pyfuncebleArgs
 read -erp "Enter any custom test string: " -i "--dns 192.168.1.105:5306 -m -p 6 -h --http --plain -vsc --hierarchical -db --database-type mariadb" -a pyfuncebleArgs
 
