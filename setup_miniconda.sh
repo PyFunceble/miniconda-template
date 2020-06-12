@@ -53,7 +53,7 @@ then
 
   # Install PyFunceble in this environment (pyfuncebletesting)
   pip -q install --no-cache-dir -U "${pyfunceblePackageName}"
-  
+
   # prepared for installing thru conda package
   #conda install -c pyfunceble "${pyfunceblePackageName}"
 
