@@ -40,7 +40,7 @@ then
 
   # Create an Environment (EXAMPLE: creating an environment called
   # pyfuncebletesting with Python version "pythonVersion")
-  conda create -q -n pyfuncebletesting python="${pythonVersion}"
+  conda create -y -q -n pyfuncebletesting python="${pythonVersion}"
 
   # Activate this environment you just created
   # According to the https://docs.conda.io/projects/conda/en/latest/_downloads/843d9e0198f2a193a3484886fa28163c/conda-cheatsheet.pdf
