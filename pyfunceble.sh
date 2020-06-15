@@ -16,6 +16,15 @@ hash tree 2>/dev/null || { echo >&2 "tree Is required to generate a nice output.
 # Run this script by appending test-file to the script name in the shell prompt
 # E.g. miniconda_pyfunceble.sh "/full/path/to/file"
 
+# just a bit of fun
+echo -e "\tI'm your hungry cheese missing a piece..."
+echo -e "\tAre you ready to go hunting the blue pills"
+echo -e "\tso we can hunt down evil ghosts"
+echo ""
+echo -e "\tAre you ready to start?"
+echo ""
+echo -e "\tloading kacman..."
+
 # Set conda install dir
 condaInstallDir="${HOME}/miniconda"
 
