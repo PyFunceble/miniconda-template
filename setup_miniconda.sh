@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
-# All initial credits to @mitchellkrogza and @funilrys
-# Modified by @spirillen
+
+# All initial credits to:
+# - https://github.com/mitchellkrogza
+# - https://github.com/funilrys
+#
+# Modified by https://www.mypdns.org/p/Spirillen/
 # License: https://www.mypdns.org/w/license/
 # Issues: https://www.mypdns.org/maniphest/
 # Project: https://www.mypdns.org/project/profile/5/
@@ -10,9 +14,6 @@
 
 # Stop on any error
 set -e
-
-# Setup pyfunceble@ version to be used
-#pyfunceblePackageName="pyfunceble-dev"
 
 # Set python version
 pythonVersion="3.8.3"
@@ -34,6 +35,9 @@ fi
 
 if [[ ! -d ${condaInstallDir}/envs/pyfunceble ]]
 then
+  # Setup pyfunceble@ version to be used
+  pyfunceblePackageName="pyfunceble"
+
   # Get the conda CLI.
   source "${condaInstallDir}/etc/profile.d/conda.sh"
 
@@ -44,22 +48,31 @@ then
 
   # Create an Environment (EXAMPLE: creating an environment called
   # pyfuncebletesting with Python version "pythonVersion")
-  conda create -y -q -n pyfunceble python="${pythonVersion}"
+  conda create -y -q -n "${pyfunceblePackageName}" python="${pythonVersion}"
 
   # Activate this environment you just created
   # According to the https://docs.conda.io/projects/conda/en/latest/_downloads/843d9e0198f2a193a3484886fa28163c/conda-cheatsheet.pdf
   # We shall replace source with conda activate vs source
-  conda activate pyfunceble
+  conda activate "${pyfunceblePackageName}"
 
   # Query Python and Pip versions inside this environment
   python -VVV
   pip --version
 
   # Install PyFunceble in this environment (pyfuncebletesting)
-  pip -q install --no-cache-dir -U pyfunceble
+  pip -q install --no-cache-dir -U "${pyfunceblePackageName}"
+  pip -q install --no-cache-dir git+https://github.com/Ultimate-Hosts-Blacklist/whitelist.git@script
+
+  # Test Pyfunceble version installed
+  pyfunceble --version
+  uhb-whitelist --version
 
   # prepared for installing thru conda package
-  #conda install -c pyfunceble pyfunceble
+  #conda install -c pyfunceble "${pyfunceblePackageName}"
+
+  # Copy default .pyfunceble-env to new enviroment
+  cp "$HOME/.config/PyFunceble/.pyfunceble-env" \
+    "${condaInstallDir}/envs/${pyfunceblePackageName}"
 
   # When finished - Deactivate the environment
   conda deactivate
@@ -70,6 +83,9 @@ fi
 
 if [[ ! -d ${condaInstallDir}/envs/pyfunceble-dev ]]
 then
+  # Setup pyfunceble@ version to be used
+  pyfunceblePackageName="pyfunceble-dev"
+
   # Get the conda CLI.
   source "${condaInstallDir}/etc/profile.d/conda.sh"
 
@@ -79,22 +95,31 @@ then
   conda update -q conda
 
   # Create an Environment (EXAMPLE: creating an environment called
-  conda create -y -q -n pyfunceble-dev python="${pythonVersion}"
+  conda create -y -q -n "${pyfunceblePackageName}" python="${pythonVersion}"
 
   # Activate this environment you just created
   # According to the https://docs.conda.io/projects/conda/en/latest/_downloads/843d9e0198f2a193a3484886fa28163c/conda-cheatsheet.pdf
   # We shall replace source with conda activate vs source
-  conda activate pyfunceble-dev
+  conda activate "${pyfunceblePackageName}"
 
   # Query Python and Pip versions inside this environment
   python -VVV
   pip --version
 
   # Install PyFunceble in this environment (pyfuncebletesting)
-  pip -q install --no-cache-dir -U pyfunceble-dev
+  pip -q install --no-cache-dir -U "${pyfunceblePackageName}"
+  pip -q install --no-cache-dir git+https://github.com/Ultimate-Hosts-Blacklist/whitelist.git@script-dev
 
   # prepared for installing thru conda package
-  #conda install -c pyfunceble pyfunceble-dev
+  #conda install -c pyfunceble "${pyfunceblePackageName}"
+
+  # Test Pyfunceble version installed
+  pyfunceble --version
+  uhb-whitelist --version
+
+  # Copy default .pyfunceble-env to new enviroment
+  cp "$HOME/.config/PyFunceble/.pyfunceble-env" \
+    "${condaInstallDir}/envs/${pyfunceblePackageName}"
 
   # When finished - Deactivate the environment
   conda deactivate
