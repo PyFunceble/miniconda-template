@@ -12,14 +12,13 @@
 set -e
 
 # Setup pyfunceble@ version to be used
-pyfunceblePackageName="pyfunceble-dev"
+#pyfunceblePackageName="pyfunceble-dev"
 
 # Set python version
 pythonVersion="3.8.3"
 
 # Set conda install dir
 condaInstallDir="${HOME}/miniconda"
-
 
 if [[ ! -d ${condaInstallDir} ]]
 then
@@ -29,7 +28,12 @@ then
 
   # Install Conda
   bash miniconda.sh -b -p "${condaInstallDir}"
+else
+  echo "We assume that conda is already installed."
+fi
 
+if [[ ! -d ${condaInstallDir}/envs/pyfunceble ]]
+then
   # Get the conda CLI.
   source "${condaInstallDir}/etc/profile.d/conda.sh"
 
@@ -41,7 +45,6 @@ then
   # Create an Environment (EXAMPLE: creating an environment called
   # pyfuncebletesting with Python version "pythonVersion")
   conda create -y -q -n pyfunceble python="${pythonVersion}"
-  conda create -y -q -n pyfunceble-dev python="${pythonVersion}"
 
   # Activate this environment you just created
   # According to the https://docs.conda.io/projects/conda/en/latest/_downloads/843d9e0198f2a193a3484886fa28163c/conda-cheatsheet.pdf
@@ -61,17 +64,43 @@ then
   # When finished - Deactivate the environment
   conda deactivate
 
-  # Let do the very same as before, this time for @dev
+else
+  echo "We assume that Pyfunceble envs is already installed."
+fi
+
+if [[ ! -d ${condaInstallDir}/envs/pyfunceble-dev ]]
+then
+  # Get the conda CLI.
+  source "${condaInstallDir}/etc/profile.d/conda.sh"
+
+  hash conda
+
+  # Update Conda
+  conda update -q conda
+
+  # Create an Environment (EXAMPLE: creating an environment called
+  conda create -y -q -n pyfunceble-dev python="${pythonVersion}"
+
+  # Activate this environment you just created
+  # According to the https://docs.conda.io/projects/conda/en/latest/_downloads/843d9e0198f2a193a3484886fa28163c/conda-cheatsheet.pdf
+  # We shall replace source with conda activate vs source
   conda activate pyfunceble-dev
+
+  # Query Python and Pip versions inside this environment
   python -VVV
   pip --version
-  pip -q install --no-cache-dir -U pyfunceble
+
+  # Install PyFunceble in this environment (pyfuncebletesting)
+  pip -q install --no-cache-dir -U pyfunceble-dev
 
   # prepared for installing thru conda package
   #conda install -c pyfunceble pyfunceble-dev
+
+  # When finished - Deactivate the environment
   conda deactivate
+
 else
-  echo "We assume that conda is already installed."
+  echo "We assume that Pyfunceble-dev envs is already installed."
 fi
 
 echo ${?}
