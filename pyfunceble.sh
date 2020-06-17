@@ -30,7 +30,7 @@ condaInstallDir="${HOME}/miniconda"
 
 if [[ -z "${1}" ]]
 then
-    printf "\n\tYou forgot to feed me...\n\tTherefor I died like your hamster :skull:\n\tPlease show me the route to the bad domain\n\tYou want me to chew through\n\t.%s /roast/beef/is/good/food\n\n" "${0}"
+    printf "\n\tYou forgot to find the blue pills...\n\tThe ghosts caught me :skull:\n\tPlease show me the route to the ghosts\n\tYou want me to chew through\n\t.%s /blue/pills/is/dead/ghosts\n\n" "${0}"
     exit 1
 fi
 
