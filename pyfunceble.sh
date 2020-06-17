@@ -131,12 +131,9 @@ else
     export PYFUNCEBLE_CONFIG_DIR="${outputDir}/"
 fi
 
-# Workaroung for https://github.com/funilrys/PyFunceble/issues/97
-cp "${1}" "${1}.tmp"
-
 # Run PyFunceble
 # Switched to use array to keep quotes for SC2086
-pyfunceble "${pyfuncebleArgs[@]}" -f "${1}.tmp"
+pyfunceble "${pyfuncebleArgs[@]}" -f "${1}"
 
 # When finished - Deactivate the environment
 conda deactivate
