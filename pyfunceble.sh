@@ -9,7 +9,7 @@
 # -------------------------------
 
 # Stop on any error
-#set -e
+set -e #-x
 
 hash tree 2>/dev/null || { echo >&2 "tree Is required to generate a nice output. Aborting mission..."; exit 1; }
 
@@ -97,6 +97,19 @@ mkdir -p "${outputDir}"
 pip install --upgrade pip -q
 pip uninstall -yq "${pyfunceblePackageName}"
 pip install --no-cache-dir --upgrade -q "${pyfunceblePackageName}"
+
+if [ "${pyfunceblePackageName}" == 'pyfunceble-dev' ]
+then
+	pip install --no-cache-dir --upgrade -q 'git+https://github.com/Ultimate-Hosts-Blacklist/whitelist.git@script-dev'
+	pyfunceble --version
+	uhb-whitelist --version
+	pip list
+else
+	pip install --no-cache-dir --upgrade -q 'git+https://github.com/Ultimate-Hosts-Blacklist/whitelist.git@script'
+	pyfunceble --version
+	uhb-whitelist --version
+	pip list
+fi
 
 # Tell the script to install/update the configuration file automatically.
 export PYFUNCEBLE_AUTO_CONFIGURATION=yes
