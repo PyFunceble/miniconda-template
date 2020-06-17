@@ -61,7 +61,7 @@ then
 
   # Install PyFunceble in this environment (pyfuncebletesting)
   pip -q install --no-cache-dir -U "${pyfunceblePackageName}"
-  pip -q install --no-cache-dir git+https://github.com/Ultimate-Hosts-Blacklist/whitelist.git@script
+  pip install --no-cache-dir --upgrade -q git+https://github.com/Ultimate-Hosts-Blacklist/whitelist.git@script
 
   # Test Pyfunceble version installed
   pyfunceble --version
@@ -128,6 +128,6 @@ else
   echo "We assume that Pyfunceble-dev envs is already installed."
 fi
 
-echo ${?}
+echo "Script exited with code: ${?}"
 
 # Now you should be ready to run the miniconda_pyfunceble.sh
