@@ -52,7 +52,7 @@ read -erp "Which version of PyFunceble would you like to use?: pyfunceble or pyf
 #read -erp "Enter any custom test string: " -i "--dns 127.0.0.1:53 -m -p $(nproc --ignore=2) -h --plain -a --dots -vsc" pyfuncebleArgs
 
 # Bug #3 test string
-read -erp "Enter any custom test string: " -i "-dbr 0 -ex --dns 192.168.1.105:53 -m -p $(nproc --ignore=2) -h --http --plain -vsc --hierarchical -db --database-type mariadb" -a pyfuncebleArgs
+read -erp "Enter any custom test string: " -i "-dbr 0 -ex --dns 192.168.1.105:53 -m -p $(nproc --ignore=2) -h --plain -vsc --hierarchical -db --database-type mariadb" -a pyfuncebleArgs
 
 # We should change the default ENV dir to match the PyF versions conda dir
 # shellcheck disable=SC2034  # Unused variables left for readability
@@ -109,14 +109,21 @@ export PYFUNCEBLE_OUTPUT_LOCATION="${outputDir}/"
 
 if [ -n "$useEnvPath" ]
 then
+    if [ ! -f "${condaInstallDir}/envs/${pyfunceblePackageName}/" ]
+    then
+		cp "$HOME/.config/PyFunceble/.pyfunceble-env" "${condaInstallDir}/envs/${pyfunceblePackageName}/"
+    fi
     export PYFUNCEBLE_CONFIG_DIR="${condaInstallDir}/envs/${pyfunceblePackageName}/"
 else
     export PYFUNCEBLE_CONFIG_DIR="${outputDir}/"
 fi
 
+# Workaroung for https://github.com/funilrys/PyFunceble/issues/97
+cp "${1}" "${1}.tmp"
+
 # Run PyFunceble
 # Switched to use array to keep quotes for SC2086
-pyfunceble "${pyfuncebleArgs[@]}" -f "${1}"
+pyfunceble "${pyfuncebleArgs[@]}" -f "${1}.tmp"
 
 # When finished - Deactivate the environment
 conda deactivate
