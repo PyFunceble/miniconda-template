@@ -29,6 +29,13 @@ then
 
   # Install Conda
   bash miniconda.sh -b -p "${condaInstallDir}"
+  
+  # inspired by https://gitlab.com/my-privacy-dns/test-suites-and-drafts/OpenWPM/-/blob/master/scripts/install-miniconda.sh#L14-18
+  source "$HOME/miniconda/etc/profile.d/conda.sh"
+  hash -r
+  conda config --set always_yes yes --set changeps1 no
+  conda update -q conda
+  conda info -a
 else
   echo "We assume that conda is already installed."
 fi
