@@ -55,7 +55,7 @@ if [ ! -d "${condaInstallDir}" ]
     bash "miniconda-${arc}.sh" -b -p "${condaInstallDir}"
 
   # inspired by https://gitlab.com/my-privacy-dns/test-suites-and-drafts/OpenWPM/-/blob/master/scripts/install-miniconda.sh#L14-18
-  echo "${conda_source}"
+  conda_source
   hash -r
   conda config --set always_yes yes --set changeps1 no
   conda update -q conda
@@ -63,7 +63,7 @@ if [ ! -d "${condaInstallDir}" ]
 else
   echo "We assume that conda is already installed."
   echo "We are updating the environment"
-  echo "${conda_source}"
+  conda_source
   hash -r
   conda config --set always_yes yes --set changeps1 no
   conda update -q conda
@@ -80,7 +80,7 @@ then
   pyfunceblePackageName="pyfunceble"
 
   # Get the conda CLI.
-  echo "${conda_source}"
+  conda_source
 
   hash conda
 
