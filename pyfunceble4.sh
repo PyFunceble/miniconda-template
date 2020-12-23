@@ -60,7 +60,7 @@ read -erp "Which version of PyFunceble would you like to use?: pyfunceble4: " \
 
 # Bug #3 test string
 read -erp "Enter any custom test string: " \
-    -i "-dbr 6 -ex --dns 192.168.1.104:53 -w $(nproc --ignore=2) -a --database-type mariadb --no-files --wildcard" -a pyfuncebleArgs
+    -i "--share-logs -dbr 6 -ex --dns 192.168.1.104:53 -w $(nproc --ignore=2) -a --database-type mariadb --no-files --wildcard" -a pyfuncebleArgs
 
 # We should change the default ENV dir to match the PyF versions conda dir
 # shellcheck disable=SC2034  # Unused variables left for readability
