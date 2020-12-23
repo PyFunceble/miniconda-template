@@ -133,9 +133,13 @@ export PYFUNCEBLE_OUTPUT_LOCATION="${outputDir}/"
 
 if [ -n "$useEnvPath" ]
 then
-    if [ ! -f "${condaInstallDir}/envs/${pyfunceblePackageName}/.pyfunceble-env" ]
+    if [ -f "${condaInstallDir}/envs/${pyfunceblePackageName}/.pyfunceble-env" ]
     then
         rm "${condaInstallDir}/envs/${pyfunceblePackageName}/.pyfunceble-env"
+    fi
+
+    if [ ! -f "${condaInstallDir}/envs/${pyfunceblePackageName}/.pyfunceble-env" ]
+    then
         cp "$HOME/.config/PyFunceble/.pyfunceble-env.4" "${condaInstallDir}/envs/${pyfunceblePackageName}/.pyfunceble-env"
     fi
     export PYFUNCEBLE_CONFIG_DIR="${condaInstallDir}/envs/${pyfunceblePackageName}/"
