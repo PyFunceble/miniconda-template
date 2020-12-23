@@ -11,14 +11,14 @@
 # Stop on any error
 set -e #-x
 
-hash tree 2>/dev/null || { echo >&2 "tree Is required to generate a nice output. Aborting mission..."; exit 1; }
+hash tree 2>/dev/null || { echo >&2 "tree Is required to generate a nice result output. Aborting mission..."; exit 1; }
 
 # Run this script by appending test-file to the script name in the shell prompt
 # E.g. miniconda_pyfunceble.sh "/full/path/to/file"
 
 # just a bit of fun
 echo -e "\tI'm your hungry cheese missing a piece..."
-echo -e "\tAre you ready to go hunting the blue pills"
+echo -e "\tAre you ready to go hunting the red pills"
 echo -e "\tso we can hunt down evil ghosts"
 echo ""
 echo -e "\tAre you ready to start?"
@@ -30,7 +30,7 @@ condaInstallDir="${HOME}/miniconda"
 
 if [[ -z "${1}" ]]
 then
-    printf "\n\tYou forgot to find the blue pills...\n\tThe ghosts caught me :skull:\n\tPlease show me the route to the ghosts\n\tYou want me to chew through\n\t.%s /blue/pills/is/dead/ghosts\n\n" "${0}"
+    printf "\n\tYou have been eating a blue pill...\n\tThe ghosts caught you :skull:\n\tPlease show me the route to the ghosts\n\tYou want me to chew through\n\t.%s /blue/pills/is/dead/ghosts\n\n" "${0}"
     exit 1
 fi
 
@@ -52,7 +52,7 @@ read -erp "Which version of PyFunceble would you like to use?: pyfunceble or pyf
 #read -erp "Enter any custom test string: " -i "--dns 127.0.0.1:53 -m -p $(nproc --ignore=2) -h --plain -a --dots -vsc" pyfuncebleArgs
 
 # Bug #3 test string
-read -erp "Enter any custom test string: " -i "-dbr -1 -ex --dns 192.168.1.105:53 -m -p $(nproc --ignore=2) -h --plain -vsc --hierarchical -db --database-type mariadb" -a pyfuncebleArgs
+read -erp "Enter any custom test string: " -i "-dbr 0 -ex --dns 192.168.1.105:53 127.0.0.1 192.168.1.53:5302 -m -p $(nproc --ignore=2) -h --plain -a --hierarchical -db --database-type mariadb" -a pyfuncebleArgs
 
 # We should change the default ENV dir to match the PyF versions conda dir
 # shellcheck disable=SC2034  # Unused variables left for readability
@@ -110,6 +110,9 @@ else
 	uhb-whitelist --version
 	pip list
 fi
+
+# print pyfunceble version
+pyfunceble --version
 
 # Tell the script to install/update the configuration file automatically.
 export PYFUNCEBLE_AUTO_CONFIGURATION=yes

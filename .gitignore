@@ -1,3 +1,5 @@
+raw2sqlalchemy.sh
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -133,3 +135,6 @@ output/
 miniconda.sh
 test.list
 dir_structure.json
+latestdomains.txt
+miniconda-x86_64.sh
+test.list
