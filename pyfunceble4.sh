@@ -11,7 +11,10 @@
 # Stop on any error
 set -e #-x
 
-hash tree 2>/dev/null || { echo >&2 "tree Is required to generate a nice result output. Aborting mission..."; exit 1; }
+pkgs="tree"
+if ! dpkg -s $pkgs >/dev/null 2>&1; then
+  sudo apt-get install $pkgs
+fi
 
 # Run this script by appending test-file to the script name in the shell prompt
 # E.g. miniconda_pyfunceble.sh "/full/path/to/file"
@@ -132,7 +135,8 @@ if [ -n "$useEnvPath" ]
 then
     if [ ! -f "${condaInstallDir}/envs/${pyfunceblePackageName}/.pyfunceble-env" ]
     then
-		cp "$HOME/.config/PyFunceble/.pyfunceble-env.4" "${condaInstallDir}/envs/${pyfunceblePackageName}/.pyfunceble-env"
+		rm "${condaInstallDir}/envs/${pyfunceblePackageName}/.pyfunceble-env"
+        cp "$HOME/.config/PyFunceble/.pyfunceble-env.4" "${condaInstallDir}/envs/${pyfunceblePackageName}/.pyfunceble-env"
     fi
     export PYFUNCEBLE_CONFIG_DIR="${condaInstallDir}/envs/${pyfunceblePackageName}/"
 else
