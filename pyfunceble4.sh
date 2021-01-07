@@ -60,7 +60,7 @@ read -erp "Which version of PyFunceble would you like to use?: pyfunceble4: " \
 
 # Bug #3 test string
 read -erp "Enter any custom test string: " \
-    -i "--share-logs -dbr 6 -ex --dns 192.168.1.104:53 -w $(nproc --ignore=2) -a --database-type mariadb --no-files --wildcard" -a pyfuncebleArgs
+    -i "--share-logs -ex --dns 192.168.1.1:53 -w $(nproc --ignore=2) -a --database-type mariadb --no-files" -a pyfuncebleArgs
 
 # We should change the default ENV dir to match the PyF versions conda dir
 # shellcheck disable=SC2034  # Unused variables left for readability
@@ -102,18 +102,18 @@ conda activate "${pyfunceblePackageName}"
 mkdir -p "${outputDir}"
 
 # Upgrade the environment
-pip install --upgrade pip -q
+pip install -I --upgrade pip wheel -q
 pip uninstall -yq PyFunceble-dev #"${pyfunceblePackageName}"
-pip install --no-cache-dir --upgrade -q 'git+https://github.com/funilrys/PyFunceble@4.0.0-dev#egg=PyFunceble-dev'
+pip install -I --no-cache-dir --upgrade -q --pre pyfunceble-dev 'alabaster<0.8,>=0.7'
 
 if [ "${pyfunceblePackageName}" == 'pyfunceble' ]
 then
-	pip install --no-cache-dir --upgrade -q 'git+https://github.com/Ultimate-Hosts-Blacklist/whitelist.git@script'
+	pip install --no-cache-dir --upgrade -I -q 'git+https://github.com/Ultimate-Hosts-Blacklist/whitelist.git@script'
 	pyfunceble --version
 	uhb-whitelist --version
 	#pip list
 else
-	pip install --no-cache-dir --upgrade -q 'git+https://github.com/Ultimate-Hosts-Blacklist/whitelist.git@script-dev'
+	pip install --no-cache-dir --upgrade -I -q 'git+https://github.com/Ultimate-Hosts-Blacklist/whitelist.git@script-dev'
 	pyfunceble --version
 	uhb-whitelist --version
 	#pip list

@@ -5,41 +5,23 @@
 # Project: https://www.mypdns.org/project/profile/5/
 
 # Stop on any error
-set -e #-x
+set -e #x
 
-scriptDir="$(git rev-parse --show-toplevel)"
 
-# Set python version (full text)
+# Set python version
 pythonVersion="python3.7"
 
-# Install requirements
 pkgs="${pythonVersion} git tree"
 if ! dpkg -s $pkgs >/dev/null 2>&1; then
   sudo apt-get install $pkgs
 fi
 
-# copied from https://github.com/EFForg/badger-sett/blob/master/runscan.sh
-update_pyfunceble_repo() {
-    echo "Updating pyfunceble..."
+pyfuncebleDir="${HOME}/Downloads/pyfunceble"
 
-    git checkout master
-    git fetch
+cd "${pyfuncebleDir}"
 
-    # figure out whether we need to pull
-    LOCAL=$(git rev-parse @)
-    REMOTE=$(git rev-parse "@{u}")
-
-    if [ "$LOCAL" != "$REMOTE" ]; then
-    echo "Pulling latest version of pyfunceble..."
-        git pull
-    else
-        echo "Local pyfunceble repository is up-to-date."
-    fi
-}
-
-cd "${scriptDir}"
-
-update_pyfunceble_repo
+git checkout master
+git pull
 
 # Run this script by appending test-file to the script name in the shell prompt
 # E.g. pyfunceble4-arm7.sh "/full/path/to/file"
