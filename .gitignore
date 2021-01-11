@@ -133,11 +133,9 @@ dmypy.json
 # ignore typical pyfunceble garbage
 output/
 miniconda.sh
-test.list
 dir_structure.json
 latestdomains.txt
 miniconda*
 miniconda-x86_64.sh
-#test.list
 hosts*
 NorwegianList.txt
