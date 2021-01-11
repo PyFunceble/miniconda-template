@@ -104,7 +104,8 @@ mkdir -p "${outputDir}"
 # Upgrade the environment
 pip install -I --upgrade pip wheel -q
 pip uninstall -yq PyFunceble-dev #"${pyfunceblePackageName}"
-pip install -I --no-cache-dir --upgrade -q --pre pyfunceble-dev 'alabaster<0.8,>=0.7'
+#pip install -I --no-cache-dir --upgrade -q -dev pyfunceble-dev 'alabaster<0.8,>=0.7'
+pip install --no-cache-dir --upgrade -I -q 'git+https://github.com/funilrys/PyFunceble.git@dev'
 
 if [ "${pyfunceblePackageName}" == 'pyfunceble' ]
 then

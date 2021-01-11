@@ -138,6 +138,6 @@ dir_structure.json
 latestdomains.txt
 miniconda*
 miniconda-x86_64.sh
-test.list
-hosts
+#test.list
+hosts*
 NorwegianList.txt
