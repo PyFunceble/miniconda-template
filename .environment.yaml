@@ -1,0 +1,9 @@
+name: pyfunceble4
+dependencies:
+  - python=3.9.6
+  - pip
+  - pip:
+      - pyfunceble-dev>=4.0.0b61
+      - black
+      - wheel
+      - mypdns
