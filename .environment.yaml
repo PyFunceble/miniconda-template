@@ -1,9 +1,10 @@
-name: pyfunceble4
+name: pyfunceble-git
 dependencies:
   - python=3.9.6
   - pip
   - pip:
-      - pyfunceble-dev>=4.0.0b61
+      - pyfunceble-dev>=4.0.0b62
       - black
       - wheel
       - mypdns
+      - Pygments>=2.0

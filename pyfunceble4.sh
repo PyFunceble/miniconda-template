@@ -64,7 +64,7 @@ read -erp "Which version of PyFunceble would you like to use?: pyfunceble4: " \
 
 # Bug #3 test string
 read -erp "Enter any custom test string: " \
-    -i "--hierarchical -ex -a --dns 192.168.0.100:5302 -c -w 20 --database-type mariadb" -a PYFUNCEBLEARGS
+    -i "--hierarchical -ex -a --dns 192.168.0.100:5302 -w 40 --database-type mariadb -dbr 0 --whois-lookup --http --netinfo-lookup" -a PYFUNCEBLEARGS
 
 # We should change the default ENV dir to match the PyF versions conda dir
 # shellcheck disable=SC2034  # Unused variables left for readability
@@ -100,7 +100,7 @@ conda update -q conda
 # Activate your environment
 # According to the https://docs.conda.io/projects/conda/en/latest/_downloads/843d9e0198f2a193a3484886fa28163c/conda-cheatsheet.pdf
 # We shall replace source with conda activate vs source
-# conda env create -f '.environment.yaml'
+conda env update -f '.environment.yaml'
 
 conda activate "${PYFUNCEBLEPACKAGENAME}"
 
@@ -111,11 +111,11 @@ conda install python="${PV}"
 mkdir -p "${outputDir}"
 
 # Upgrade the environment
-pip install -I -U -q pip wheel Pygments>=2.0
-pip uninstall -yq PyFunceble-dev #"${PYFUNCEBLEPACKAGENAME}"
+# pip install -I -U -q pip wheel Pygments>=2.0
+# pip uninstall -yq PyFunceble-dev #"${PYFUNCEBLEPACKAGENAME}"
 # pip install --no-cache-dir --upgrade -q --pre pyfunceble-dev>=4.0.0b61 'alabaster<0.8,>=0.7'
 # pip install --no-cache-dir --upgrade -I -q 'git+https://github.com/funilrys/PyFunceble.git@dev'
-pip install --no-cache-dir --upgrade -I -q 'git+https://mypdns.org/pyfunceble/PyFunceble.git@dev'
+# pip install --no-cache-dir --upgrade -I -q 'git+https://mypdns.org/pyfunceble/PyFunceble.git@dev'
 
 if [ "${PYFUNCEBLEPACKAGENAME}" == 'pyfunceble' ]
 then
