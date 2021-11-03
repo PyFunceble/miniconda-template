@@ -18,7 +18,7 @@ set -e
 # Set python version
 # to find the latest version
 # `conda search --full-name python`
-pythonVersion="3.10"
+# pythonVersion="3.10"
 
 # Set conda install dir
 condaInstallDir="${HOME}/miniconda"
