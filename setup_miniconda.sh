@@ -45,14 +45,14 @@ function copy_config () {
   # Copy default .pyfunceble-env and .PyFunceble.overwrite.yaml to new
   # environment
   cp "$HOME/.config/PyFunceble/.pyfunceble-env" \
-    "${condaInstallDir}/envs/${pyfunceblePackageName}"
+    "${condaInstallDir}/envs/${PYFUNCEBLEPACKAGENAME}"
 
   cp "$HOME/.config/PyFunceble/.PyFunceble.overwrite.yaml" \
-    "${condaInstallDir}/envs/${pyfunceblePackageName}"
+    "${condaInstallDir}/envs/${PYFUNCEBLEPACKAGENAME}"
   
   echo ""
   echo "List copied files"
-  ls -lha "${condaInstallDir}/envs/${pyfunceblePackageName}"
+  ls -lha "${condaInstallDir}/envs/${PYFUNCEBLEPACKAGENAME}"
 }
 
 if [[ ! -d ${condaInstallDir} ]]
@@ -99,7 +99,7 @@ fi
 if [[ ! -d ${condaInstallDir}/envs/pyfunceble ]]
 then
   # Setup pyfunceble@ version to be used
-  export pyfunceblePackageName="pyfunceble"
+  export PYFUNCEBLEPACKAGENAME="pyfunceble"
 
   # Get the conda CLI.
   source "${condaInstallDir}/etc/profile.d/conda.sh"
@@ -112,13 +112,13 @@ then
 
   # Create an Environment (EXAMPLE: creating an environment called
   # pyfuncebletesting with Python version "pythonVersion")
-  # conda create -y -q -n "${pyfunceblePackageName}" python="${pythonVersion}"
-  conda env update -f ".environment.${pyfunceblePackageName}.yaml" --prune -q
+  # conda create -y -q -n "${PYFUNCEBLEPACKAGENAME}" python="${pythonVersion}"
+  conda env update -f ".environment.${PYFUNCEBLEPACKAGENAME}.yaml" --prune -q
 
   # Activate this environment you just created
   # According to the https://docs.conda.io/projects/conda/en/latest/_downloads/843d9e0198f2a193a3484886fa28163c/conda-cheatsheet.pdf
   # We shall replace source with conda activate vs source
-  conda activate "${pyfunceblePackageName}"
+  conda activate "${PYFUNCEBLEPACKAGENAME}"
 
   # Calling function: version
   version
@@ -126,7 +126,7 @@ then
   # uhb-whitelist --version
 
   # prepared for installing through conda package
-  #conda install -c pyfunceble "${pyfunceblePackageName}"
+  #conda install -c pyfunceble "${PYFUNCEBLEPACKAGENAME}"
 
   # Copy default .pyfunceble-env to new environment
   # Calling function: copy_config
@@ -142,7 +142,7 @@ fi
 if [[ ! -d ${condaInstallDir}/envs/pyfunceble-dev ]]
 then
   # Setup pyfunceble@ version to be used
-  export pyfunceblePackageName="pyfunceble-dev"
+  export PYFUNCEBLEPACKAGENAME="pyfunceble-dev"
 
   # Get the conda CLI.
   source "${condaInstallDir}/etc/profile.d/conda.sh"
@@ -153,13 +153,13 @@ then
   conda update -yq conda
 
   # Create an Environment (EXAMPLE: creating an environment called
-  # conda create -y -q -n "${pyfunceblePackageName}" python="${pythonVersion}"
-  conda env update -f ".environment.${pyfunceblePackageName}.yaml" --prune -q
+  # conda create -y -q -n "${PYFUNCEBLEPACKAGENAME}" python="${pythonVersion}"
+  conda env update -f ".environment.${PYFUNCEBLEPACKAGENAME}.yaml" --prune -q
 
   # Activate this environment you just created
   # According to the https://docs.conda.io/projects/conda/en/latest/_downloads/843d9e0198f2a193a3484886fa28163c/conda-cheatsheet.pdf
   # We shall replace source with conda activate vs source
-  conda activate "${pyfunceblePackageName}"
+  conda activate "${PYFUNCEBLEPACKAGENAME}"
 
   # Calling function: version
   version
