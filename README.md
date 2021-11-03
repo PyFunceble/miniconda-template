@@ -3,6 +3,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7e9d0f339cd046c4ab8b162e6805f182)](https://app.codacy.com/gh/PyFunceble-Templates/pyfunceble-miniconda?utm_source=github.com&utm_medium=referral&utm_content=PyFunceble-Templates/pyfunceble-miniconda&utm_campaign=Badge_Grade_Settings)
 
 This script consist of two parts.
+
   1. `setup_miniconda.sh`
   2. `pyfunceble.sh`
 
