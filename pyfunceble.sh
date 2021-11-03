@@ -11,7 +11,10 @@
 # Stop on any error
 set -e #-x
 
-hash tree 2>/dev/null || { echo >&2 "tree Is required to generate a nice result output. Aborting mission..."; exit 1; }
+pkgs="tree"
+if ! dpkg -s $pkgs >/dev/null 2>&1; then
+  sudo apt-get install $pkgs
+fi
 
 # Run this script by appending test-file to the script name in the shell prompt
 # E.g. miniconda_pyfunceble.sh "/full/path/to/file"
@@ -30,12 +33,20 @@ condaInstallDir="${HOME}/miniconda"
 
 if [[ -z "${1}" ]]
 then
-    printf "\n\tYou have been eating a blue pill...\n\tThe ghosts caught you :skull:\n\tPlease show me the route to the ghosts\n\tYou want me to chew through\n\t.%s /blue/pills/is/dead/ghosts\n\n" "${0}"
+    printf "\n\tYou have been swaloowing a blue pill..."
+    printf "\tThe ghosts caught you :skull:"
+    printf "\tPlease show me the route to the ghosts"
+    printf "\tYou want me to chew through\n\t.%s /blue/pills/is/dead/ghosts\n\n" "${0}"
     exit 1
 fi
 
+# Select Python version for test env
+read -erp "Enter Python version to be used in Conda: " \
+    -i "3.9.6" PV
+
 # Change the output directory to suite your needs
-read -erp "Enter output directory for test results: " -i "/tmp/pyfuncebletesting/$(date +'%H%M')" outputDir
+read -erp "Enter output directory for test results: " \
+    -i "/tmp/pyfunceble/$(date +'%H%M')" outputDir
 
 # Clean output dir if exist for a clean test environment
 if [[ -d "${outputDir}" ]]
@@ -45,14 +56,15 @@ fi
 
 # Set your desired pyfunceble verion
 # We set pyfunceble-dev as default to avoid typos.
-read -erp "Which version of PyFunceble would you like to use?: pyfunceble or pyfunceble-dev: " -i "pyfunceble-dev" pyfunceblePackageName
+read -erp "Which version of PyFunceble would you like to use?: pyfunceble4: " \
+    -i "pyfunceble4" PYFUNCEBLEPACKAGENAME
 
 # Set your test string.
 # IMPORTANT: the -f argument is preset as last argument
-#read -erp "Enter any custom test string: " -i "--dns 127.0.0.1:53 -m -p $(nproc --ignore=2) -h --plain -a --dots -vsc" pyfuncebleArgs
 
 # Bug #3 test string
-read -erp "Enter any custom test string: " -i "-dbr 0 -ex --dns 192.168.1.105:53 127.0.0.1 192.168.1.53:5302 -m -p $(nproc --ignore=2) -h --plain -a --hierarchical -db --database-type mariadb" -a pyfuncebleArgs
+read -erp "Enter any custom test string: " \
+    -i "--hierarchical -ex -a --dns 192.168.0.100:5302 -w 40 --database-type mariadb -dbr 0 --whois-lookup --http --netinfo-lookup" -a PYFUNCEBLEARGS
 
 # We should change the default ENV dir to match the PyF versions conda dir
 # shellcheck disable=SC2034  # Unused variables left for readability
@@ -60,9 +72,9 @@ read -erp "Enter any custom test string: " -i "-dbr 0 -ex --dns 192.168.1.105:53
 while true
 do
 read -erp "Would you like to use your default pyfunceble enviroment
-  ${condaInstallDir}/envs/${pyfunceblePackageName}?: [Y/n] " -i "Y" pyfuncebleENV
+  ${condaInstallDir}/envs/${PYFUNCEBLEPACKAGENAME}?: [Y/n] " -i "Y" PYFUNCEBLE_ENV
 
-case $pyfuncebleENV in
+case $PYFUNCEBLE_ENV in
     [yY][eE][sS]|[yY])
  useEnvPath="yes"
  break
@@ -88,27 +100,34 @@ conda update -q conda
 # Activate your environment
 # According to the https://docs.conda.io/projects/conda/en/latest/_downloads/843d9e0198f2a193a3484886fa28163c/conda-cheatsheet.pdf
 # We shall replace source with conda activate vs source
-conda activate "${pyfunceblePackageName}"
+conda env update -f '.environment.yaml'
 
-# Make sure output dir is there
+conda activate "${PYFUNCEBLEPACKAGENAME}"
+
+# Set python version to use
+conda install python="${PV}"
+
+# Make sure output dir is present
 mkdir -p "${outputDir}"
 
-# Upgrade your environment
-pip install --upgrade pip -q
-pip uninstall -yq "${pyfunceblePackageName}"
-pip install --no-cache-dir --upgrade -q "${pyfunceblePackageName}"
+# Upgrade the environment
+# pip install -I -U -q pip wheel Pygments>=2.0
+# pip uninstall -yq PyFunceble-dev #"${PYFUNCEBLEPACKAGENAME}"
+# pip install --no-cache-dir --upgrade -q --pre pyfunceble-dev>=4.0.0b61 'alabaster<0.8,>=0.7'
+# pip install --no-cache-dir --upgrade -I -q 'git+https://github.com/funilrys/PyFunceble.git@dev'
+# pip install --no-cache-dir --upgrade -I -q 'git+https://mypdns.org/pyfunceble/PyFunceble.git@dev'
 
-if [ "${pyfunceblePackageName}" == 'pyfunceble-dev' ]
+if [ "${PYFUNCEBLEPACKAGENAME}" == 'pyfunceble' ]
 then
-	pip install --no-cache-dir --upgrade -q 'git+https://github.com/Ultimate-Hosts-Blacklist/whitelist.git@script-dev'
+	pip install --no-cache-dir --upgrade -I -q 'git+https://github.com/Ultimate-Hosts-Blacklist/whitelist.git@script'
 	pyfunceble --version
 	uhb-whitelist --version
-	pip list
+	#pip list
 else
-	pip install --no-cache-dir --upgrade -q 'git+https://github.com/Ultimate-Hosts-Blacklist/whitelist.git@script'
+	pip install --no-cache-dir --upgrade -I -q 'git+https://github.com/Ultimate-Hosts-Blacklist/whitelist.git@script-dev'
 	pyfunceble --version
 	uhb-whitelist --version
-	pip list
+	#pip list
 fi
 
 # print pyfunceble version
@@ -125,38 +144,41 @@ export PYFUNCEBLE_OUTPUT_LOCATION="${outputDir}/"
 
 if [ -n "$useEnvPath" ]
 then
-    if [ ! -f "${condaInstallDir}/envs/${pyfunceblePackageName}/" ]
+    if [ -f "${condaInstallDir}/envs/${PYFUNCEBLEPACKAGENAME}/.pyfunceble-env" ]
     then
-		cp "$HOME/.config/PyFunceble/.pyfunceble-env" "${condaInstallDir}/envs/${pyfunceblePackageName}/"
+        rm "${condaInstallDir}/envs/${PYFUNCEBLEPACKAGENAME}/.pyfunceble-env"
     fi
-    export PYFUNCEBLE_CONFIG_DIR="${condaInstallDir}/envs/${pyfunceblePackageName}/"
+
+    if [ ! -f "${condaInstallDir}/envs/${PYFUNCEBLEPACKAGENAME}/.pyfunceble-env" ]
+    then
+        cp "$HOME/.config/PyFunceble/.pyfunceble-env.4" "${condaInstallDir}/envs/${PYFUNCEBLEPACKAGENAME}/.pyfunceble-env"
+    fi
+    export PYFUNCEBLE_CONFIG_DIR="${condaInstallDir}/envs/${PYFUNCEBLEPACKAGENAME}/"
 else
     export PYFUNCEBLE_CONFIG_DIR="${outputDir}/"
 fi
 
-# Workaroung for https://github.com/funilrys/PyFunceble/issues/97
-# cp "${1}" "${1}.tmp"
-
 # Run PyFunceble
 # Switched to use array to keep quotes for SC2086
-pyfunceble "${pyfuncebleArgs[@]}" -f "${1}"
-
-# When finished - Deactivate the environment
-conda deactivate
+pyfunceble "${PYFUNCEBLEARGS[@]}" -f "${1}"
 
 # Output the test variables at the end of the test, as it could have been
 # Running for hours and terminal history could be to long to be visible
 
 echo ""
 echo ""
-echo -e "\tThank you for feting me with the following junk food, and I'm now 'full'"
-echo -e "\tYou tested this file: ${1}"
-echo -e "\tWith the following variable: ${pyfuncebleArgs[@]}"
+echo -e "\tThank you for feting me with all that junk food, I used to like you too..."
+echo -e "\tYou tested with: " $(pyfunceble --version)
+echo -e "\tYou tested this source: ${1}"
+echo -e "\tWith the following variable: ${PYFUNCEBLEARGS[@]}"
 echo -e "\tYou're output location is: ${outputDir}"
 echo -e "\tThe following files have been generated in the outputDir\n"
 echo ""
 echo ""
 
 tree --prune -f "${outputDir}"
+
+# When finished - Deactivate the environment
+conda deactivate
 
 echo ${?}

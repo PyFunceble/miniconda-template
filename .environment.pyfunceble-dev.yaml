@@ -1,4 +1,7 @@
-name: pyfunceble-git
+name: pyfunceble-dev
+channels:
+  - conda-forge
+  - defaults
 dependencies:
   - python=3.10
   - pip
@@ -8,3 +11,4 @@ dependencies:
       - wheel
       - mypdns
       - Pygments>=2.0
+variables:

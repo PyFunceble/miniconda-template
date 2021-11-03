@@ -1,0 +1,12 @@
+1.0.1 Changeset to fit PyFunceble 4.0.1
+      - Replacement of bash code lines for installing into conda via
+        `.environment.${pyfunceblePackageName}.yaml` file.
+      - Added this CHANGELOG
+      - Updated `README.md`, A few typos and added section to the "Setup"
+        about the future update/upgrade should be happening through the
+        standard script, as it is related to the
+        `.environment.${pyfunceblePackageName}.yaml` file.
+      - Support for arm7 have been dropped
+      - Moved `pyfunceble4.sh` to `pyfunceble.sh`
+      - Added copying the `.PyFunceble.overwrite.yaml`
+      - Updated `requirements.txt`

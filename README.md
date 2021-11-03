@@ -9,7 +9,8 @@ This script consist of two parts.
 ## Setup
 
 If everything works as expected, you should never run `setup_miniconda.sh`
-more than once.
+more than once. This is because we will be using the .environment.yaml
+to keep your version up to date.
 
 ## Running PyFunceble
 
@@ -27,7 +28,7 @@ $ ./miniconda_pyfunceble.sh "https://raw.githubusercontent.com/PyFunceble/ci_tes
 ## Read more
 
 You can read more about environment variables at
-<https://pyfunceble.readthedocs.io/en/dev/components/environment-variables.html#what-do-we-use-and-why>
+<https://pyfunceble.readthedocs.io/en/dev/usage/index.html#from-a-terminal>
 
 ## Test string
 
@@ -38,9 +39,9 @@ To alter the test options you should be reading more about this at
 
 See <https://github.com/funilrys/PyFunceble/issues/39> by
 [@mitchellkrogza](https://github.com/mitchellkrogza)
-and [@funilrys](https://github.com/funilrys) and since I'm running on a Ubuntu
+and @funilrys and since I'm running on a Ubuntu
 which curses some troubles
-as [@mitchellkrogza](https://github.com/mitchellkrogza) descripes it:
+as [@mitchellkrogza](https://github.com/mitchellkrogza) describes it:
 
 > Distributions like Ubuntu are especially troublesome with Python issues
 > which are easily solved by just running Python in Conda environments.
