@@ -10,3 +10,10 @@
       - Moved `pyfunceble4.sh` to `pyfunceble.sh`
       - Added copying the `.PyFunceble.overwrite.yaml`
       - Updated `requirements.txt`
+      - added test of default conda install dir from the install script
+        to the `pyfunceble.sh`
+      - Changed the selection of PyFunceble version in `pyfunceble.sh`
+        to a numbered choice rather than spelling.
+      - Set the installer script to delete `miniconda.sh` after
+        installation
+      - replaced the rm command with find -delete
