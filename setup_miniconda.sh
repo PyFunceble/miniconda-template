@@ -176,7 +176,7 @@ fi
 
 echo "Script exited with code: ${?}"
 
-# Now you should be ready to run the miniconda_pyfunceble.sh
+# Now you should be ready to run the pyfunceble.sh
 
 # For testing only
 # conda env list

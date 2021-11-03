@@ -1,3 +1,5 @@
+1.0.2 Fixed a old hanging rename issue
+
 1.0.1 Changeset to fit PyFunceble 4.0.1
       - Replacement of bash code lines for installing into conda via
         `.environment.${pyfunceblePackageName}.yaml` file.
