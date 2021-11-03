@@ -179,7 +179,10 @@ echo "Script exited with code: ${?}"
 # Now you should be ready to run the miniconda_pyfunceble.sh
 
 # For testing only
-conda env list
+# conda env list
 
-conda env remove -n pyfunceble
-conda env remove -n pyfunceble-dev
+# conda env remove -n pyfunceble
+# conda env remove -n pyfunceble-dev
+
+# Cleanup
+rm miniconda.sh
